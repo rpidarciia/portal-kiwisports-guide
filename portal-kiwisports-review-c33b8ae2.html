@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奇异果体育 · 资料整理页</title>
+    <style>
+        /* reset & base */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f9fc;
+            color: #1e2f3b;
+            line-height: 1.7;
+            padding: 1.5rem;
+        }
+
+        .page {
+            max-width: 840px;
+            margin: 2rem auto;
+            background: #ffffff;
+            border-radius: 36px 36px 24px 24px;
+            box-shadow: 0 10px 30px rgba(0, 60, 70, 0.08);
+            overflow: hidden;
+        }
+
+        /* header / hero 区 ———— 开场短句 */
+        .hero {
+            background: linear-gradient(135deg, #d4f0ed 0%, #b2dfdb 100%);
+            padding: 3rem 2rem 2.5rem;
+            text-align: center;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 28px;
+            background: #ffffff;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 28'%3E%3Cpath d='M0,14 C200,0 400,28 600,14 C800,0 1000,28 1200,14 L1200,28 L0,28 Z' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat bottom;
+            mask-size: 100% 100%;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 28'%3E%3Cpath d='M0,14 C200,0 400,28 600,14 C800,0 1000,28 1200,14 L1200,28 L0,28 Z' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat bottom;
+            -webkit-mask-size: 100% 100%;
+        }
+        .hero h1 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            letter-spacing: -0.01em;
+            color: #0b4b4b;
+            margin-bottom: 0.6rem;
+        }
+        .hero .opening {
+            font-size: 1.15rem;
+            color: #1c5555;
+            max-width: 500px;
+            margin: 0 auto 0.4rem;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+            backdrop-filter: blur(2px);
+        }
+
+        /* 主体内容 */
+        .content {
+            padding: 2rem 2rem 2.2rem;
+        }
+
+        /* 承接段落 */
+        .intro-text {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            padding: 0 0.1rem;
+            color: #244d55;
+        }
+        .intro-text strong {
+            color: #0f6b6b;
+            font-weight: 560;
+        }
+
+        /* 特点列表 ———— 网格卡片 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.8rem 0 2rem;
+        }
+        @media (min-width: 500px) {
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        .feature-card {
+            background: #f0f7f9;
+            border-radius: 24px;
+            padding: 1.4rem 1.2rem 1.2rem;
+            border-left: 6px solid #279b9b;
+            transition: background 0.2s;
+        }
+        .feature-card:nth-child(2) { border-left-color: #3bafaf; }
+        .feature-card:nth-child(3) { border-left-color: #4fc1c1; }
+        .feature-card:nth-child(4) { border-left-color: #65d0d0; }
+        .feature-card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #115555;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .feature-card h3::before {
+            content: '▹';
+            color: #279b9b;
+            font-size: 1.2rem;
+        }
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #2a4a50;
+            margin-top: 0.2rem;
+        }
+
+        /* 场景区块（对照 / 延伸阅读） */
+        .scenario-block {
+            background: #e7f3f1;
+            border-radius: 28px;
+            padding: 1.6rem 1.6rem 1.4rem;
+            margin: 1.8rem 0 2rem;
+        }
+        .scenario-block h2 {
+            font-size: 1.2rem;
+            font-weight: 540;
+            color: #0a4a4a;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .scenario-block h2 span {
+            background: #ffffffb3;
+            padding: 0.1rem 0.7rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: #146666;
+        }
+        .scenario-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .scenario-list li {
+            background: #ffffffcc;
+            padding: 0.9rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            color: #1d4b4b;
+            backdrop-filter: blur(2px);
+            border: 1px solid #c2e0db;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.25rem 0.5rem;
+        }
+        .scenario-list li .label {
+            font-weight: 550;
+            color: #116060;
+            min-width: 5.2em;
+        }
+
+        /* 温和结尾 + 常见疑问摘要 */
+        .closing {
+            margin-top: 2.2rem;
+            padding-top: 1.2rem;
+            border-top: 2px dashed #c2dfdb;
+        }
+        .closing-note {
+            background: #f4fbfa;
+            border-radius: 30px;
+            padding: 1.2rem 1.6rem;
+            color: #1a4f4f;
+            font-size: 0.98rem;
+        }
+        .closing-note p {
+            margin-bottom: 0.6rem;
+        }
+        .closing-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* faq 摘要 ———— 折叠感 */
+        .faq-mini {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .faq-item {
+            background: #ffffff;
+            border-radius: 40px;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid #cde5e1;
+            font-size: 0.92rem;
+            color: #215b5b;
+        }
+        .faq-item .q {
+            font-weight: 540;
+            color: #0e5e5e;
+        }
+        .faq-item .a {
+            margin-top: 0.1rem;
+            color: #2b5a5a;
+        }
+
+        /* 链接 */
+        a {
+            color: #1b7b7b;
+            text-decoration: none;
+            font-weight: 520;
+            border-bottom: 1px solid #a4cfc9;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        a:hover {
+            color: #0b4b4b;
+            border-bottom-color: #0b4b4b;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 480px) {
+            body { padding: 0.8rem; }
+            .page { margin: 0.5rem auto; border-radius: 28px; }
+            .hero { padding: 2rem 1.2rem 1.8rem; }
+            .hero h1 { font-size: 1.5rem; }
+            .content { padding: 1.5rem 1rem 1.8rem; }
+            .feature-card { padding: 1rem; }
+            .scenario-block { padding: 1.2rem; }
+            .scenario-list li { padding: 0.7rem 1rem; }
+        }
+
+        /* 工具 */
+        .text-muted { color: #447b7b; }
+        .mt-1 { margin-top: 0.6rem; }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- 开场短句 -->
+    <div class="hero">
+        <div class="opening">📋 每日对照 · 简单延伸</div>
+        <h1>奇异果体育 · 信息整理</h1>
+        <p style="color: #1e5b5b; margin-top: 0.6rem; font-size: 0.95rem; max-width: 460px; margin-left: auto; margin-right: auto;">
+            把查询、对比、阅读整合在一处，方便随时翻阅。
+        </p>
+    </div>
+
+    <div class="content">
+        <!-- 承接段落 —— 从日常查询切入 -->
+        <div class="intro-text">
+            <p>平时查阅体育相关的资料，常常需要在不同页面来回切换。这里将一些常见条目、特点与场景做了梳理，方便对照和延伸阅读。如果你正在了解或使用 <a href="https://portal-kiwisports.com">奇异果体育</a> 的相关内容，下面这份整理或许能帮你更快定位到感兴趣的部分。</p>
+            <p style="margin-top: 0.8rem;">以下内容基于常规信息整理，不构成操作建议，请依据个人判断使用。</p>
+        </div>
+
+        <!-- 特点列表 ———— 网格卡片 -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>信息模块化</h3>
+                <p>将体育相关的条目按类别分组，方便快速浏览与对比，减少反复查找的步骤。</p>
+            </div>
+            <div class="feature-card">
+                <h3>对照式展示</h3>
+                <p>同类内容并排陈列，一眼看出差异点，适合需要横向比较的场景。</p>
+            </div>
+            <div class="feature-card">
+                <h3>延伸参考</h3>
+                <p>每个条目附带简短说明或关联提示，方便进一步阅读或按需深入。</p>
+            </div>
+            <div class="feature-card">
+                <h3>干净版面</h3>
+                <p>减少视觉干扰，重点落在文字与结构上，移动端阅读同样清晰。</p>
+            </div>
+        </div>
+
+        <!-- 场景区块：对照 & 延伸阅读 -->
+        <div class="scenario-block">
+            <h2>📌 常见使用场景 <span>对照 / 延伸</span></h2>
+            <ul class="scenario-list">
+                <li><span class="label">日常查询</span> 快速查看某项体育信息的要点，不必每次都重新搜索。</li>
+                <li><span class="label">条目对比</span> 把几个相似内容放在一起比较异同，帮助做判断。</li>
+                <li><span class="label">延伸阅读</span> 从当前条目找到相关联的提示或说明，继续探索。</li>
+                <li><span class="label">内容梳理</span> 把分散的片段整理成有序的纲要，方便回顾。</li>
+            </ul>
+        </div>
+
+        <!-- 温和结尾 + FAQ 摘要 -->
+        <div class="closing">
+            <div class="closing-note">
+                <p>这份页面只是一份静态整理，所有内容均基于可公开获取的信息编写。如果你对具体条目或背景有疑问，不妨通过 <a href="https://portal-kiwisports.com">奇异果体育</a> 查找更详细的说明，或参考其他可靠来源。</p>
+                <p>希望这份对照能为你节省一点时间。若有遗漏或需要补充的地方，按自己习惯做标注就好。</p>
+
+                <!-- FAQ 摘要 -->
+                <div class="faq-mini">
+                    <div class="faq-item">
+                        <div class="q">▸ 页面里的内容会更新吗？</div>
+                        <div class="a">本页为独立整理，不自动同步外部数据，建议定期核对最新信息。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="q">▸ 可以直接复制使用吗？</div>
+                        <div class="a">文字部分可自由引用，但请注意核对准确性，并尊重来源。</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="q">▸ 如何找到更多相关信息？</div>
+                        <div class="a">参考链接或搜索工具都能延伸，<a href="https://portal-kiwisports.com">奇异果体育</a> 本身也提供内容入口。</div>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: #578a8a;">
+                —— 整理于日常 · 仅供参考 ——
+            </p>
+        </div>
+    </div>
+    <!-- 装饰线 -->
+    <div style="height: 6px; background: linear-gradient(90deg, #b2dfdb, #8dcdc5, #b2dfdb);"></div>
+</div>
+</body>
+</html>
